@@ -1,11 +1,32 @@
+// @deno-types="./asset-url.d.ts"
+import hatUrl from "./assets/hat.svg?no-inline";
+// @deno-types="./asset-url.d.ts"
+import moonUrl from "./assets/moon.svg?no-inline";
+
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
 function buildFace(): SVGSVGElement {
   const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  face.setAttribute("viewBox", "0 0 200 200");
+  face.setAttribute("viewBox", "0 -30 200 230");
   face.setAttribute("role", "img");
-  face.setAttribute("aria-label", "A neutral face");
+  face.setAttribute(
+    "aria-label",
+    "A green wizard with a purple pointy hat and a crescent moon behind him",
+  );
+
+  // moon.svg: my own drawing, written by hand as SVG in a text editor.
+  // No outside source; I made it myself.
+  const moonImage = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "image",
+  );
+  moonImage.setAttribute("href", moonUrl);
+  moonImage.setAttribute("x", "140");
+  moonImage.setAttribute("y", "5");
+  moonImage.setAttribute("width", "50");
+  moonImage.setAttribute("height", "50");
+  face.append(moonImage);
 
   const head = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -15,10 +36,21 @@ function buildFace(): SVGSVGElement {
   head.setAttribute("cy", "100");
   head.setAttribute("rx", "78");
   head.setAttribute("ry", "86");
-  head.setAttribute("fill", "#f3cf87");
+  head.setAttribute("fill", "#1a9d00");
   head.setAttribute("stroke", "#302c29");
   head.setAttribute("stroke-width", "4");
   face.append(head);
+
+  const beard = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
+  beard.setAttribute("points", "40,120 160,120 100,198");
+  beard.setAttribute("fill", "#b8b8b8");
+  beard.setAttribute("stroke", "#302c29");
+  beard.setAttribute("stroke-width", "4");
+  beard.setAttribute("stroke-linejoin", "round");
+  face.append(beard);
 
   const leftEye = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -61,6 +93,19 @@ function buildFace(): SVGSVGElement {
   mouth.setAttribute("stroke-width", "4");
   mouth.setAttribute("stroke-linecap", "round");
   face.append(mouth);
+
+  // hat.svg: my own drawing, written by hand as SVG in a text editor.
+  // No outside source; I made it myself. Appended last so it draws on top.
+  const hatImage = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "image",
+  );
+  hatImage.setAttribute("href", hatUrl);
+  hatImage.setAttribute("x", "50");
+  hatImage.setAttribute("y", "-30");
+  hatImage.setAttribute("width", "100");
+  hatImage.setAttribute("height", "100");
+  face.append(hatImage);
 
   return face;
 }
