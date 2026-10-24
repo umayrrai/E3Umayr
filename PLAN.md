@@ -41,3 +41,16 @@ A, B, and C are three different ways to draw him. I'm only going to keep one.
 
 I'll pick the one that looks most like a wizard and is still easy to
 recognize when it's small.
+
+## Decision
+
+I chose B, the hat and moon version, and it is now on `main`.
+
+My criterion was that the portrait should look most like a wizard and still
+be easy to recognize when it's small. The pointy hat is the strongest
+wizard signal, and it still reads at a small size. A had a lot of stars but
+the face itself looked like a plain green head, and C was smooth but nothing
+in it said wizard apart from the beard.
+
+A and C stay on their own branches, untouched, as a record of those
+alternatives.
